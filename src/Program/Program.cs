@@ -6,6 +6,9 @@
 
 using Ucu.Poo.Fsm;
 using System;
+using System.Security;
+using Nito.AsyncEx;
+using System.Diagnostics;
 
 namespace Ucu.Poo.Fsm
 {
@@ -19,8 +22,9 @@ namespace Ucu.Poo.Fsm
         /// </summary>
         public static void Main()
         {
-            // Crea un reproductor de música, una secuencia de entradas y
-            // procesa esas entradas con el reproductor de música.
+            StateMachine player = new MusicPlayer();
+            InputSymbol[] buttons = new InputSymbol[] { new Play(), new Pause(), new Play(), new Stop() };
+            player.ProcessEvents(buttons);
         }
     }
 }
